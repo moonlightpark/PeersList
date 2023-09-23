@@ -1,5 +1,7 @@
 '''
-전체 노드를 찾아서 노드 보상 주소를 크롤링 한 후, 파일로 저장
+Find all nodes,
+crawl the node miner address,
+and save it as a file.
 '''
 import pprint
 import pandas as pd
@@ -32,5 +34,13 @@ with open(file_path,encoding='UTF-8') as json_file:
     data = json.load(json_file)
     print(type(data))
 
+
+
+f = open('./miner_address.txt', 'w')
+
 for i in data['peers']:
     print(data['peers'][i]['address'])
+    line = data['peers'][i]['address']+'\n'
+    f.write(line)
+
+f.close()
